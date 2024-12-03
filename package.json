@@ -1,0 +1,12 @@
+{
+  "name": "s62_gamify-",
+  "version": "1.0.0",
+  "description": "Gamify is a web-based application that allows users to access games from various genere. The application will have a user-friendly interface, allowing users to browse and play games without any hassle. The application will also have a library where the user can add games which they play regularly.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
