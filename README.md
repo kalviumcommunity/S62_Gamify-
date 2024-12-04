@@ -10,3 +10,5 @@ Key features: The main features of the website would be:
 - Game Reviews 
 - Game specifications 
 - Game details
+
+And that's all for now.
