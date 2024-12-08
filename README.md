@@ -12,3 +12,10 @@ Key features: The main features of the website would be:
 - Game details
 
 And that's all for now.
+
+
+### Steps taken
+End Point assingment:
+    The setup for express was done.
+    An endpoint & port was set for the server.
+    

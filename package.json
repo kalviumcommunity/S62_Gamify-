@@ -4,9 +4,13 @@
   "description": "Gamify is a web-based application that allows users to access games from various genere. The application will have a user-friendly interface, allowing users to browse and play games without any hassle. The application will also have a library where the user can add games which they play regularly.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.2"
+  }
 }
