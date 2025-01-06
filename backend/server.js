@@ -1,7 +1,6 @@
 const express=require('express');
 const app=express();
 
-
 // setting up an endpoint
 
 app.get('/',(req,res)=>{
@@ -14,3 +13,4 @@ const PORT=8080;
 app.listen(PORT,()=>{
     console.log(`Virtual Assistant API is running on http://localhost:${PORT}`)
 })
+
