@@ -5,11 +5,16 @@ const connectDB=require('./src/database/database.js');
 const dotenv=require('dotenv');
 const User=require('./src/models/User.js');
 const {getDB, mongoConnection}=require('./src/database/mongo.client.js')
-
+const {router}=require ('./src/routes/route.js')
+const PORT=8080;
 
 app.use(express.json(`""`))
+app.use('./CRUD-operation',router)
 // setting up an endpoint
 
+app.get('/ping',(req,res)=>{
+    return res.send('pong')
+})
 
 app.get('/',async(req,res)=>{
     const checkStatus=await mongoConnection.connect();
@@ -32,7 +37,6 @@ app.post('/users',async (req,res)=>{
 })
 // The port
 
-const PORT=8080;
 app.listen(PORT,()=>{
     connectDB();
     console.log(`Virtual Assistant API is running on http://localhost:${PORT}`)
