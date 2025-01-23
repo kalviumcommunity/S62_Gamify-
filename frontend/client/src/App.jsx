@@ -1,4 +1,5 @@
 import React from 'react';
+import GameCard from './components/GameCard'; // Import the GameCard component
 
 const games = [
   {
@@ -30,17 +31,13 @@ const Homepage = () => {
       <h1 className="text-4xl font-bold text-center mb-8">Welcome to Gamify</h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {games.map((game) => (
-          <div key={game.id} className="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-            <img src={game.image} alt={game.title} className="w-full h-48 object-cover" />
-            <div className="p-6">
-              <h2 className="text-2xl font-bold mb-2">{game.title}</h2>
-              <p className="text-sm text-gray-400 mb-4">{game.genre}</p>
-              <p className="text-gray-300">{game.description}</p>
-              <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                Play Now
-              </button>
-            </div>
-          </div>
+          <GameCard 
+            key={game.id} 
+            title={game.title} 
+            genre={game.genre} 
+            description={game.description} 
+            image={game.image} 
+          />
         ))}
       </div>
     </div>
