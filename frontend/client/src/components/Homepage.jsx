@@ -10,7 +10,7 @@ const Homepage = () => {
     const fetchGames = async () => {
       try {
         const response = await axios.get('http://localhost:8080/CRUD-operations/games'); // Fetch data from the API
-        console.log(response.data);
+        console.log(response);
         setGames(response.data);
       } catch (error) {
 
@@ -36,7 +36,7 @@ const Homepage = () => {
         {games.length > 0 ? (
           games?.map((game,index) => (
             <GameCard 
-              key={game._id} 
+              id={game._id} 
               title={game.name} 
               genre={game.genre} 
               description={game.description} 

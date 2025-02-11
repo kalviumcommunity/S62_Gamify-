@@ -1,6 +1,7 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
 
-const GameCard = ({ title, genre, description, image }) => {
+const GameCard = ({ title, genre, description, image, id }) => {
   return (
     <div className="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
       <img src={image} alt={title} className="w-full h-48 object-cover" />
@@ -11,6 +12,16 @@ const GameCard = ({ title, genre, description, image }) => {
         <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
           Play Now
         </button>
+        <Link to ={`/update-game/${id}`}>
+        <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-5" >
+          Update
+        </button>
+        </Link>
+        <Link to ={`/delete-game/${id}`}>
+        <button className="mt-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-5" >
+          Delete
+        </button>
+        </Link>
       </div>
     </div>
   );
