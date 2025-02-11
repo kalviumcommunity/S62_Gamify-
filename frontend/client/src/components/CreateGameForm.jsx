@@ -1,8 +1,42 @@
-import React from 'react'
+import React, { useState } from 'react'
+import axios from 'axios'
 
 function CreateGameForm() {
 
-  
+  const [newGame,setNewGame]=useState({
+    gameName:'',
+    gameDescription:'',
+    gameGenre:'',
+    gameImage:null
+  })
+
+  const handleInputChange=(e)=>{
+    const {name,value}=e.target;
+    if (name==='gameImage'){
+      setNewGame({...newGame,[name]:e.target.files[0]});
+    }else{
+      setNewGame({...newGame,[name]:value});
+    }
+  };
+
+  const handleSubmit=async(e)=>{
+    e.preventDefault();
+    try{
+      const res=await axios.post('http://localhost:8080/CRUD-operations/create-game', newGame)
+      console.log(res.data);
+
+      //reseting form fields
+      setNewGame({
+        gameName:'',
+        gameDescription:'',
+        gameGenre:'',
+        gameImage:null
+      })
+
+    }catch(er){
+      console.log(er);
+    }
+  }
 
 const backgroundImage = "https://wallpaperaccess.com/full/878531.jpg";
 
@@ -15,7 +49,7 @@ const backgroundImage = "https://wallpaperaccess.com/full/878531.jpg";
 <div className="bg-black bg-opacity-80 p-6 rounded-2xl shadow-lg w-full max-w-md text-white">
   <h1 className="text-3xl font-bold text-white-800 mb-6 text-center">Add Game</h1>
   
-  <form className="space-y-4">
+  <form className="space-y-4" onSubmit={handleSubmit}>
     {/* Game Name */}
     <div>
       <label className="block font-medium">Game Name:</label>
@@ -24,6 +58,8 @@ const backgroundImage = "https://wallpaperaccess.com/full/878531.jpg";
         name="gameName"
         className="w-full bg-black bg-opacity-70 text-white border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Enter game name"
+        onChange={handleInputChange}
+        value={newGame.gameName}
         />
     </div>
 
@@ -35,6 +71,8 @@ const backgroundImage = "https://wallpaperaccess.com/full/878531.jpg";
         rows="4"
         className="w-full bg-black bg-opacity-70 text-white border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         placeholder="Describe the game..."
+        value={newGame.gameDescription}
+        onChange={handleInputChange}
         ></textarea>
     </div>
 
@@ -78,6 +116,7 @@ const backgroundImage = "https://wallpaperaccess.com/full/878531.jpg";
         id="fileUpload"
         name="fileUpload"
         className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 bg-transparent text-white"
+        onChange={handleInputChange}
         />
     </div>
 

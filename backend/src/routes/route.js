@@ -1,21 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const { getDB } = require('../database/mongo.client.js');
+const { getDB,upload } = require('../database/mongo.client.js');
 const { ObjectId } = require('mongodb');
-const multer = require('multer'); // Import multer
-
-// Set up multer for file uploads
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-        cb(null, 'uploads/'); // Specify the directory to save uploaded files
-    },
-    filename: (req, file, cb) => {
-        cb(null, file.originalname); // Use the original file name
-    }
-});
-
-const upload = multer({ storage: storage }); // Initialize multer with the storage configuration
 
 router.use(express.json());
 
@@ -90,11 +77,13 @@ router.get("/games", async (req, res) => {
 });
 
 // New endpoint to create game data with file upload
-router.post("/create-game", async (req, res) => {
+router.post("/create-game", upload.single('image') ,async (req, res) => {
     try {
         const db = await getDB();
-        const { name, genre, description,image} = req.body; // Destructure the incoming data
-        const newGame = { name, genre, description, image };
+        const newGame = { name:req.body.name,
+             genre:req.body.genre,
+             description:req.body.description,
+             image:req.file.filename };
         console.log(newGame)
         const insertData = await db.insertOne(newGame);
         return res.status(201).send({ message: "Game created successfully", insertData });

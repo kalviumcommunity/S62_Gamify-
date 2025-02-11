@@ -1,6 +1,6 @@
 
 require("dotenv").config();
-
+const multer=require('multer')
 const { MongoClient } = require("mongodb");
 
 const mongoConnection = new MongoClient(process.env.DB_URL);
@@ -16,4 +16,13 @@ async function getDB() {
   }
 }
 
-module.exports = { getDB, mongoConnection };
+const storage=multer.diskStorage({
+  destination:(req,file,cb)=>{
+    cb(null, file.originalName);
+  }
+});
+
+const upload=multer({storage:storage})
+
+
+module.exports = { getDB, mongoConnection, upload};
